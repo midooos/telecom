@@ -1,0 +1,5 @@
+# Évite les problèmes de fins de ligne entre Windows et les conteneurs Linux
+* text=auto eol=lf
+*.pbix binary
+*.joblib binary
+*.zip binary

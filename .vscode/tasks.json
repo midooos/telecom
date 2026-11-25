@@ -1,0 +1,42 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "1. Stack: démarrer (Postgres, Kafka, Debezium, MinIO)",
+      "type": "shell",
+      "command": "docker compose up -d",
+      "problemMatcher": []
+    },
+    {
+      "label": "2. Airflow: démarrer (http://localhost:8081, admin/admin)",
+      "type": "shell",
+      "command": "docker compose --profile airflow up -d --build",
+      "problemMatcher": []
+    },
+    {
+      "label": "État des conteneurs",
+      "type": "shell",
+      "command": "docker compose --profile airflow ps",
+      "problemMatcher": []
+    },
+    {
+      "label": "Logs: tous les services",
+      "type": "shell",
+      "command": "docker compose logs -f",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Stack: arrêter",
+      "type": "shell",
+      "command": "docker compose --profile airflow down",
+      "problemMatcher": []
+    },
+    {
+      "label": "Stack: tout effacer et repartir de zéro",
+      "type": "shell",
+      "command": "docker compose --profile airflow down -v",
+      "problemMatcher": []
+    }
+  ]
+}

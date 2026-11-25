@@ -1,0 +1,14 @@
+# Aucun secret ici : tout vient des variables d'environnement (.env).
+telecom_churn:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role: "{{ env_var('SNOWFLAKE_ROLE', 'TRANSFORMER') }}"
+      warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE', 'WH_TELECOM') }}"
+      database: "{{ env_var('SNOWFLAKE_DATABASE', 'TELECOM_CHURN') }}"
+      schema: PUBLIC          # non utilisé : voir macros/generate_schema_name.sql
+      threads: 4

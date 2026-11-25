@@ -1,0 +1,42 @@
+name: CI
+
+# Squelette minimal, à étoffer quand le code arrive (pytest, dbt build, déploiement...).
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  lint:
+    name: Lint Python
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install ruff
+      - run: ruff check .
+
+  compose:
+    name: Validation docker-compose
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cp .env.example .env
+      - run: docker compose --profile airflow config -q
+
+  dbt:
+    name: dbt parse (compilation sans connexion)
+    runs-on: ubuntu-latest
+    env:
+      SNOWFLAKE_ACCOUNT: dummy
+      SNOWFLAKE_USER: dummy
+      SNOWFLAKE_PASSWORD: dummy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install "dbt-snowflake>=1.8,<1.10"
+      - run: dbt parse --project-dir dbt --profiles-dir dbt

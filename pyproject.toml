@@ -1,0 +1,14 @@
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+extend-exclude = ["notebooks"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = ["E501"]          # longueur de ligne : non bloquant
+
+[tool.ruff.lint.isort]
+known-third-party = ["airflow"]   # le dossier ./airflow ne doit pas être pris pour du code du projet

@@ -1,0 +1,22 @@
+name: telecom_churn
+version: "1.0.0"
+config-version: 2
+profile: telecom_churn
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+clean-targets: ["target", "dbt_packages"]
+
+# Couches du schéma : models/silver -> schéma CLEANED, models/gold -> schéma BUSINESS.
+# Les modèles (SQL) sont à écrire par M3 (et M4 pour les variables du modèle de churn).
+models:
+  telecom_churn:
+    silver:
+      +schema: CLEANED
+      +materialized: table
+      +tags: ["silver"]
+    gold:
+      +schema: BUSINESS
+      +materialized: table
+      +tags: ["gold"]

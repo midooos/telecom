@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-toolsai.jupyter",
+    "charliermarsh.ruff",
+    "ms-azuretools.vscode-docker",
+    "innoverio.vscode-dbt-power-user",
+    "snowflake.snowflake-vsc",
+    "redhat.vscode-yaml",
+    "mechatroner.rainbow-csv",
+    "github.vscode-pull-request-github",
+    "eamodio.gitlens",
+    "atlassian.atlascode"
+  ]
+}
